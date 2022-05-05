@@ -887,7 +887,7 @@ In ${clockString(new Date() - user.afkTime)}
             mek.message.extendedTextMessage.contextInfo.quotedMessage
               .documentMessage.fileName;
 
-          media = await das.downloadAndSaveMediaMessage(
+          media = await Zaki.downloadAndSaveMediaMessage(
             encmedia,
             (filename = fileName),
             false
@@ -901,13 +901,40 @@ In ${clockString(new Date() - user.afkTime)}
               result.saveFiles(`./media/pdf/result.pdf`);
             })
             .catch((err) => {
-              return reply('eror')
+              return reply('eror');
               // return das.sendMessage(
               //   ownerNumber,
               //   `${command}: ${err.message}`,
               //   text
               // );
             });
+
+          await sleep(2000);
+          Zaki.sendMessage(
+            m.chat,
+            {
+              document: {
+                url: './media/pdf/result.pdf',
+              },
+              mimetype: 'application/pdf',
+              fileName: 'juz-amma-arab-latin-indonesia.pdf',
+            },
+            { quoted: m }
+          );
+          // das.sendMessage(
+          //   from,
+          //   fs.readFileSync(`./media/pdf/result.${args[0]}`),
+          //   document,
+          //   {
+          //     quoted: mek,
+          //     mimetype: mimeType,
+          //     filename: `${fileName.split('.')[0]}.${args[0]}`,
+          //     contextInfo: {
+          //       forwardingScore: 210,
+          //       isForwarded: true,
+          //     },
+          //   }
+          // );
         }
         break;
       case 'afk':

@@ -181,7 +181,7 @@ Good Bye 👋` })
             else { console.log(`Unknown DisconnectReason: ${reason}|${connection}`) }
         }
         console.log('Connected...', update)
-        // Zaki.sendMessage(ownerNumber + '@s.whatsapp.net', {text: `Connected..`})
+        Zaki.sendMessage('6285216024226@s.whatsapp.net', {text: `Connected..`})
     })
     
     Zaki.ev.on('creds.update', saveState)
