@@ -179,14 +179,8 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
         {
           text: teks,
           contextInfo: {
-            externalAdReply: {
-              title: ` ${global.botnma}`,
-              body: ` Join Bot's Official GC`,
-              previewType: 'PHOTO',
-              thumbnailUrl: ``,
-              thumbnail: fs.readFileSync(`./media/zaki.jpg`),
-              sourceUrl: 'https://chat.whatsapp.com/E14rIyYMuovIfkskhi5QN9',
-            },
+            forwardingScore: 2,
+            isForwarded: true,
           },
         },
         { quoted: m }
@@ -321,7 +315,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
         m.chat,
         {
           document: {
-            url: './media/result.',
+            url: `./media/result.${args[0]}`,
           },
           mimetype: mimeType,
           fileName: `${fileName.split('.')[0]}.${args[0]}`,
@@ -329,7 +323,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
         { quoted: m }
       );
       await sleep(s);
-      await fs.unlinkSync(`./media/result.pdf`);
+      await fs.unlinkSync(`./media/result.${args[0]}`);
       console.log('succcess');
     };
     ////////////////////////////
@@ -931,6 +925,7 @@ In ${clockString(new Date() - user.afkTime)}
 
     switch (command) {
       case 'convertto':
+      case 'converto':
         if (args.length == 0) return reply(`convert to what?`);
 
         if (isQuotedDoc) {
