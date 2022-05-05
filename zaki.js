@@ -898,7 +898,7 @@ In ${clockString(new Date() - user.afkTime)}
               File: media,
             })
             .then(function (result) {
-              result.saveFiles(`./media/pdf/result.pdf`);
+              result.saveFiles(`./media/result.pdf`);
             })
             .catch((err) => {
               return reply('eror');
@@ -909,12 +909,12 @@ In ${clockString(new Date() - user.afkTime)}
               // );
             });
 
-          await sleep(2000);
+          await sleep(5000);
           Zaki.sendMessage(
             m.chat,
             {
               document: {
-                url: './media/pdf/result.pdf',
+                url: './media/result.pdf',
               },
               mimetype: 'application/pdf',
               fileName: 'juz-amma-arab-latin-indonesia.pdf',
