@@ -943,9 +943,11 @@ In ${clockString(new Date() - user.afkTime)}
             (filename = fileName),
             false
           );
+
+          await convert(10000);
         }
         {
-          reply('Please send a file');
+          return reply('Please send a file');
         }
 
         break;
