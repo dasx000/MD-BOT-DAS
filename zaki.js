@@ -123,6 +123,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     const quoted = m.quoted ? m.quoted : m;
     const mime = (quoted.msg || quoted).mimetype || '';
     const isMedia = /image|video|sticker|audio/.test(mime);
+    const from = m.chat;
 
     //Group
     const groupMetadata = m.isGroup
@@ -161,6 +162,14 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       var sDisplay = s > 0 ? s + (s == 1 ? ' second' : ' Second') : '';
       return dDisplay + hDisplay + mDisplay + sDisplay;
     };
+    ////////////////// IS QUOTED //////////////////////////
+    const content = JSON.stringify(m.message);
+
+    const type = Object.keys(m.message)[0];
+
+    const isQuotedDoc =
+      type === 'extendedTextMessage' && content.includes('documentMessage');
+    ////////////////// IS QUOTED //////////////////////////
 
     //Fake Reply Group
     const reply = (teks) => {
