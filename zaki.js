@@ -242,16 +242,19 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     if (!Zaki.public) {
       if (!m.key.fromMe && !isOwner) return;
     }
-    // REACTION MESSAGE
-    if (!m.key.fromMe) {
-      const reactionMessage = {
-        react: {
-          text: '💖',
-          key: m.key,
-        },
-      };
 
-      Zaki.sendMessage(m.chat, reactionMessage);
+    // REACTION MESSAGE
+    if (isCmd) {
+      if (!m.key.fromMe) {
+        const reactionMessage = {
+          react: {
+            text: '💖',
+            key: m.key,
+          },
+        };
+
+        Zaki.sendMessage(m.chat, reactionMessage);
+      }
     }
 
     //Console Auto Read
