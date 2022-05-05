@@ -323,7 +323,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
           document: {
             url: './media/result.',
           },
-          mimetype: 'application/pdf',
+          mimetype: mimeType,
           fileName: `${fileName.split('.')[0]}.${args[0]}`,
         },
         { quoted: m }
