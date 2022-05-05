@@ -103,7 +103,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
           m.text
         : '';
     var budy = typeof m.text == 'string' ? m.text : '';
-    let prefix = '.'
+    let prefix = '.';
     const isCmd = body.startsWith(prefix);
     const command = body
       .replace(prefix, '')
@@ -240,18 +240,19 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     }
 
     // REACTION MESSAGE
-    if (isCmd) {
-      if (!m.key.fromMe) {
-        const reactionMessage = {
-          react: {
-            text: '💖',
-            key: m.key,
-          },
-        };
+    // let reactionText = ['🏳️‍🌈'];
+    // if (isCmd) {
+    //   if (!m.key.fromMe) {
+    //     const reactionMessage = {
+    //       react: {
+    //         text: reactionText[math.floor(Math.random() * reactionText.length)],
+    //         key: m.key,
+    //       },
+    //     };
 
-        Zaki.sendMessage(m.chat, reactionMessage);
-      }
-    }
+    //     Zaki.sendMessage(m.chat, reactionMessage);
+    //   }
+    // }
 
     //Console Auto Read
     if (m.message) {
