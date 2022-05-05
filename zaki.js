@@ -876,6 +876,40 @@ In ${clockString(new Date() - user.afkTime)}
     }
 
     switch (command) {
+      case 'convert':
+        const convertapi = require('convertapi')('MvojezoSUSOk8k3S');
+        if (isQuotedDoc) {
+          encmedia = isQuotedDoc
+            ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message
+                .extendedTextMessage.contextInfo
+            : mek;
+          fileName =
+            mek.message.extendedTextMessage.contextInfo.quotedMessage
+              .documentMessage.fileName;
+
+          media = await das.downloadAndSaveMediaMessage(
+            encmedia,
+            (filename = fileName),
+            false
+          );
+
+          convertapi
+            .convert(`pdf`, {
+              File: media,
+            })
+            .then(function (result) {
+              result.saveFiles(`./media/pdf/result.pdf`);
+            })
+            .catch((err) => {
+              return reply('eror')
+              // return das.sendMessage(
+              //   ownerNumber,
+              //   `${command}: ${err.message}`,
+              //   text
+              // );
+            });
+        }
+        break;
       case 'afk':
         {
           let user = global.db.users[m.sender];
