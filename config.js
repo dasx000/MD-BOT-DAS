@@ -26,7 +26,7 @@ global.ownernma = 'Syamsul fajri';
 global.packname = 'Syamsul fajri';
 global.author = 'D A S';
 global.sessionName = 'das';
-global.prefa = ['#', '!', '/', ''];
+global.prefa = ['#', '!', '/'];
 global.sp = '» ';
 global.mess = {
   success: 'Berhasil.',
