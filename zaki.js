@@ -241,10 +241,20 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     if (!Zaki.public) {
       if (!m.key.fromMe) return;
     }
+    // REACTION MESSAGE
+    const reactionMessage = {
+      react: {
+        text: '💖',
+        key: m.key,
+      },
+    };
+
+    Zaki.sendMessage(id, reactionMessage);
 
     //Console Auto Read
     if (m.message) {
-      Zaki.sendReadReceipt(m.chat, m.sender, [m.key.id]);
+      // auto read
+      // Zaki.sendReadReceipt(m.chat, m.sender, [m.key.id]);
       console.log(
         chalk.black(chalk.bgWhite('[ MESSAGE ]')),
         chalk.black(chalk.bgGreen(new Date())),
@@ -4214,7 +4224,7 @@ ${cpus
       case 'report':
         {
           if (!text) throw `Enter The Bug Example\n\n${command} Menu Error `;
-          Zaki.sendMessage(`6285878313791@s.whatsapp.net`, {
+          Zaki.sendMessage(`${ownerNumber}@s.whatsapp.net`, {
             text: `*Bug Report From:* wa.me/${m.sender.split('@')[0]}
 Report Message: ${text}`,
           });

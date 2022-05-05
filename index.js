@@ -20,13 +20,14 @@ async function startZaki() {
     const Zaki = ZakiConnect({
         logger: pino({ level: 'silent' }),
         printQRInTerminal: true,
-        browser: ['YouTube FLOB','Safari','1.0.0'],
+        browser: ['Das','Safari','1.0.0'],
         auth: state,
         version
     })
 
     store.bind(Zaki.ev)
 
+    /* auto block if calling bot
     Zaki.ws.on('CB:call', async (json) => {
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
@@ -37,6 +38,7 @@ async function startZaki() {
     await Zaki.updateBlockStatus(callerId, "block")
     }
     })
+    */
 
     Zaki.ev.on('messages.upsert', async chatUpdate => {
         //console.log(JSON.stringify(chatUpdate, undefined, 2))
@@ -54,6 +56,8 @@ async function startZaki() {
         }
     })
 
+ 
+   /* Welcome and Bye
     Zaki.ev.on('group-participants.update', async (anu) => {
         console.log(anu)
         try {
@@ -95,7 +99,9 @@ Good Bye 👋` })
         } catch (err) {
             console.log(err)
         }
-    })	
+    })
+    */
+    
     Zaki.decodeJid = (jid) => {
         if (!jid) return jid
         if (/:\d+@/gi.test(jid)) {
@@ -156,7 +162,7 @@ Good Bye 👋` })
         })
         return status
     }
-	
+	// Setting self or public
     Zaki.public = true
 
     Zaki.serializeM = (m) => smsg(Zaki, m, store)
@@ -175,6 +181,7 @@ Good Bye 👋` })
             else { console.log(`Unknown DisconnectReason: ${reason}|${connection}`) }
         }
         console.log('Connected...', update)
+        Zaki.sendMessage(ownerNumber + '@s.whatsapp.net', {text: `*Report Bot:* Someone Called Bot`})
     })
     
     Zaki.ev.on('creds.update', saveState)
