@@ -888,7 +888,7 @@ In ${clockString(new Date() - user.afkTime)}
               .documentMessage.fileName;
 
           media = await Zaki.downloadAndSaveMediaMessage(
-            encmedia,
+            quoted,
             (filename = fileName),
             false
           );
