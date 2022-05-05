@@ -1,4 +1,4 @@
-//━━━━━━━━━━━━━━━[ MODULE FRIM BOT ]━━━━━━━━━━━━━━━\\
+//━━━━━━━━━━━━━━━ [ MODULE FRIM BOT ] ━━━━━━━━━━━━━━━\\
 require('./config');
 const {
   BufferJSON,
