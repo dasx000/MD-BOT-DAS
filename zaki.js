@@ -939,7 +939,7 @@ In ${clockString(new Date() - user.afkTime)}
             false
           );
 
-          await convert(10000);
+          await convert(30000);
         }
         {
           return reply('Please send a file');
