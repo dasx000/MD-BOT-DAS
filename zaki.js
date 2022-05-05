@@ -103,11 +103,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
           m.text
         : '';
     var budy = typeof m.text == 'string' ? m.text : '';
-    var prefix = prefa
-      ? /^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi.test(body)
-        ? body.match(/^[°•π÷×¶∆£¢€¥®™+✓_=|~!?@#$%^&.©^]/gi)[0]
-        : ''
-      : prefa ?? global.prefix;
+    let prefix = '.'
     const isCmd = body.startsWith(prefix);
     const command = body
       .replace(prefix, '')
