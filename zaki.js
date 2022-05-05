@@ -17,6 +17,7 @@ const chalk = require('chalk');
 const { exec, spawn, execSync } = require('child_process');
 const axios = require('axios');
 const path = require('path');
+const convertapi = require('convertapi')('MvojezoSUSOk8k3S');
 const hx = require('hxz-api');
 const xfar = require('xfarr-api');
 const os = require('os');
@@ -279,6 +280,59 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       );
     }
 
+    // FUNCTION CONVERTER DOCUMENT
+    const convert = async (s) => {
+      // miemtype
+      if (args[0] === 'pdf') {
+        mimeType = 'application/pdf';
+      } else if (args[0] === 'doc') {
+        mimeType = 'application/msword';
+      } else if (args[0] === 'zip') {
+        mimeType = 'application/zip';
+      } else if (args[0] === 'jpg') {
+        mimeType = 'image/jpg';
+      } else if (args[0] === 'png') {
+        mimeType = 'image/png';
+      } else if (args[0] === 'jpeg') {
+        mimeType = 'image/jpeg';
+      } else if (args[0] === 'docx') {
+        mimeType =
+          'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+      } else if (args[0] === 'xlsx') {
+        mimeType =
+          'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+      } else if (args[0] === 'xls') {
+        mimeType = 'application/vnd.ms-excel';
+      }
+
+      convertapi
+        .convert(args[0], {
+          File: media,
+        })
+        .then(function (result) {
+          result.saveFiles(`./media/result.${args[0]}`);
+        })
+        .catch((err) => {
+          return reply(err.message);
+        });
+
+      await sleep(s);
+      Zaki.sendMessage(
+        m.chat,
+        {
+          document: {
+            url: './media/result.',
+          },
+          mimetype: 'application/pdf',
+          fileName: `${fileName.split('.')[0]}.${args[0]}`,
+        },
+        { quoted: m }
+      );
+      await sleep(s);
+      await fs.unlinkSync(`./media/result.pdf`);
+      console.log('succcess');
+    };
+    ////////////////////////////
     //Levelling Bot
     const levelRole = getLevelingLevel(m.sender);
     var role = 'Warrior III';
@@ -876,13 +930,10 @@ In ${clockString(new Date() - user.afkTime)}
     }
 
     switch (command) {
-      case 'convert':
-        const convertapi = require('convertapi')('MvojezoSUSOk8k3S');
+      case 'convertto':
+        if (args.length == 0) return reply(`convert to what?`);
+
         if (isQuotedDoc) {
-          encmedia = isQuotedDoc
-            ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message
-                .extendedTextMessage.contextInfo
-            : mek;
           fileName =
             mek.message.extendedTextMessage.contextInfo.quotedMessage
               .documentMessage.fileName;
@@ -892,50 +943,11 @@ In ${clockString(new Date() - user.afkTime)}
             (filename = fileName),
             false
           );
-
-          convertapi
-            .convert(`pdf`, {
-              File: media,
-            })
-            .then(function (result) {
-              result.saveFiles(`./media/result.pdf`);
-            })
-            .catch((err) => {
-              return reply('eror');
-              // return das.sendMessage(
-              //   ownerNumber,
-              //   `${command}: ${err.message}`,
-              //   text
-              // );
-            });
-
-          await sleep(5000);
-          Zaki.sendMessage(
-            m.chat,
-            {
-              document: {
-                url: './media/result.pdf',
-              },
-              mimetype: 'application/pdf',
-              fileName: 'juz-amma-arab-latin-indonesia.pdf',
-            },
-            { quoted: m }
-          );
-          // das.sendMessage(
-          //   from,
-          //   fs.readFileSync(`./media/pdf/result.${args[0]}`),
-          //   document,
-          //   {
-          //     quoted: mek,
-          //     mimetype: mimeType,
-          //     filename: `${fileName.split('.')[0]}.${args[0]}`,
-          //     contextInfo: {
-          //       forwardingScore: 210,
-          //       isForwarded: true,
-          //     },
-          //   }
-          // );
         }
+        {
+          reply('Please send a file');
+        }
+
         break;
       case 'afk':
         {
