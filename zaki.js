@@ -249,7 +249,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       },
     };
 
-    Zaki.sendMessage(id, reactionMessage);
+    Zaki.sendMessage(m.chat, reactionMessage);
 
     //Console Auto Read
     if (m.message) {
