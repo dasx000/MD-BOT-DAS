@@ -241,7 +241,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
 
     //Mode Bot
     if (!Zaki.public) {
-      if (!isOwner) return;
+      if (!isOwner && !m.key.fromMe) return;
     }
 
     // REACTION MESSAGE
