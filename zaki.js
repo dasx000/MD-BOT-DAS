@@ -119,7 +119,8 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       .map((v) => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
       .includes(m.sender);
     const itsMe = m.sender == botNumber ? true : false;
-    const isOwner = m.sender == ownerNumber + '@s.whatsapp.net';
+    const isOwner =
+      m.sender == ownerNumber + '@s.whatsapp.net' || m.sender == botNumber;
     const text = (q = args.join(' '));
     const quoted = m.quoted ? m.quoted : m;
     const mime = (quoted.msg || quoted).mimetype || '';
@@ -240,7 +241,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
 
     //Mode Bot
     if (!Zaki.public) {
-      if (!m.key.fromMe && !isOwner) return;
+      if (!isOwner) return;
     }
 
     // REACTION MESSAGE
@@ -930,7 +931,7 @@ In ${clockString(new Date() - user.afkTime)}
         if (args.length == 0) return reply(`convert to what?`);
 
         if (isQuotedDoc) {
-           reply('wait a minute...');
+          reply('wait a minute...');
           fileName =
             mek.message.extendedTextMessage.contextInfo.quotedMessage
               .documentMessage.fileName;
