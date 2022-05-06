@@ -406,7 +406,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       }
     }
     //Mute Chat Bot
-    if (db.chats[m.chat].mute && !isAdmins && !isCreator) {
+    if (db.chats[m.chat].mute && !isAdmins && !isCreator && !isOwner) {
       return;
     }
     //Reading Database
