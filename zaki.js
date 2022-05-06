@@ -4288,20 +4288,20 @@ ${cpus
           reply(respon);
         }
         break;
-      case 'owner':
+        case 'owner':
       case 'creator':
         {
           let vcard =
             'BEGIN:VCARD\n' +
             'VERSION:3.0\n' +
-            'N:;KiZakiXD;;;' +
-            'FN:KiZakiXD\n' +
-            'ORG:𝙸 𝙰𝚖 𝙺𝙸𝚉𝙰𝙺𝙸𝚇𝙳;\n' +
-            'item1.TEL;type=CELL;type=VOICE;waid=6285878313791:+62 858-7831-3791\n' +
-            'item1.X-ABLabel:Creator Chitanda - MDt\n' +
-            'item2.EMAIL;type=INTERNET:helloiamkizakixd@gmail.com\n' +
+            'N:;D A S;;;' +
+            'FN:D A S\n' +
+            'ORG:D A S;\n' +
+            `item1.TEL;type=CELL;type=VOICE;waid=${ownerNumber}:+${ownerNumber}\n` +
+            'item1.X-ABLabel:BOT WA - MDt\n' +
+            'item2.EMAIL;type=INTERNET:dasx000@gmail.com\n' +
             'item2.X-ABLabel:Email\n' +
-            'item3.URL:https://instagram.com/iamkizakixd\n' +
+            'item3.URL:https://instagram.com/dasx000\n' +
             'item3.X-ABLabel:Instagram\n' +
             'item4.ADR:;;Indonesia;;;;\n' +
             'item4.X-ABLabel:Region\n' +
@@ -4309,12 +4309,13 @@ ${cpus
           Zaki.sendMessage(
             m.chat,
             {
-              contacts: { displayName: '𝙸 𝙰𝚖 𝙺𝙸𝚉𝙰𝙺𝙸𝚇𝙳', contacts: [{ vcard }] },
+              contacts: { displayName: 'My Owner', contacts: [{ vcard }] },
             },
             { quoted: m }
           );
         }
         break;
+    
       case 'bug':
       case 'report':
         {
