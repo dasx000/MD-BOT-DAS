@@ -119,8 +119,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       .map((v) => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net')
       .includes(m.sender);
     const itsMe = m.sender == botNumber ? true : false;
-    const isOwner =
-      m.sender == ownerNumber + '@s.whatsapp.net' || m.sender == botNumber;
+    const isOwner = m.sender == ownerNumber + '@s.whatsapp.net' ? true : false;
     const text = (q = args.join(' '));
     const quoted = m.quoted ? m.quoted : m;
     const mime = (quoted.msg || quoted).mimetype || '';
@@ -241,7 +240,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
 
     //Mode Bot
     if (!Zaki.public) {
-      if (!isOwner && !m.key.fromMe) return;
+      if (!isOwner && !itsMe) return;
     }
 
     // REACTION MESSAGE
