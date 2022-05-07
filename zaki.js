@@ -246,7 +246,20 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     //Console Auto Read
     if (m.message) {
       // REACTION MESSAGE
-      let reactionText = ['🥹,🫣,🫡,🫥,🇲🇾,🇮🇩,🇮🇱,🇬🇷,🇬🇮,🇩🇪,🇬🇲,🇵🇼'];
+      let reactionText = [
+        '🥹',
+        '🫣',
+        '🫡',
+        '🫥',
+        '🇲🇾',
+        '🇮🇩',
+        '🇮🇱',
+        '🇬🇷',
+        '🇬🇮',
+        '🇩🇪',
+        '🇬🇲',
+        '🇵🇼',
+      ];
       // if (isCmd) {
       if (!m.key.fromMe) {
         const reactionMessage = {
