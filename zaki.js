@@ -246,22 +246,23 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     //Console Auto Read
     if (m.message) {
       // REACTION MESSAGE
-      let reactionText = [
-        '🥹',
-        '🫣',
-        '🫡',
-        '🫥',
-        '🇲🇾',
-        '🇮🇩',
-        '🇮🇱',
-        '🇬🇷',
-        '🇬🇮',
-        '🇩🇪',
-        '🇬🇲',
-        '🇵🇼',
-      ];
-      // if (isCmd) {
-      if (!m.key.fromMe) {
+      if (isCmd || body.toLowerCase().includes('wkwk')) {
+        let reactionText = [
+          '🥹',
+          '🫣',
+          '🫡',
+          '🫥',
+          '🇲🇾',
+          '🇮🇩',
+          '🇮🇱',
+          '🇬🇷',
+          '🇬🇮',
+          '🇩🇪',
+          '🇬🇲',
+          '🇵🇼',
+        ];
+
+        // if (!m.key.fromMe) {
         const reactionMessage = {
           react: {
             text: reactionText[Math.floor(Math.random() * reactionText.length)],
@@ -270,8 +271,8 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
         };
 
         Zaki.sendMessage(m.chat, reactionMessage);
+        // }
       }
-      // }
 
       // auto read
       Zaki.sendPresenceUpdate('unavailable', from);
