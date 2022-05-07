@@ -251,7 +251,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       if (!m.key.fromMe) {
         const reactionMessage = {
           react: {
-            text: reactionText[math.floor(Math.random() * reactionText.length)],
+            text: reactionText[Math.floor(Math.random() * reactionText.length)],
             key: m.key,
           },
         };
