@@ -243,23 +243,23 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       if (!isOwner && !itsMe) return;
     }
 
-    // REACTION MESSAGE
-    // let reactionText = ['🏳️‍🌈'];
-    // if (isCmd) {
-    //   if (!m.key.fromMe) {
-    //     const reactionMessage = {
-    //       react: {
-    //         text: reactionText[math.floor(Math.random() * reactionText.length)],
-    //         key: m.key,
-    //       },
-    //     };
-
-    //     Zaki.sendMessage(m.chat, reactionMessage);
-    //   }
-    // }
-
     //Console Auto Read
     if (m.message) {
+      // REACTION MESSAGE
+      let reactionText = ['🥹,🫣,🫡,🫥,🇲🇾,🇮🇩,🇮🇱,🇬🇷,🇬🇮,🇩🇪,🇬🇲,🇵🇼'];
+      // if (isCmd) {
+      if (!m.key.fromMe) {
+        const reactionMessage = {
+          react: {
+            text: reactionText[math.floor(Math.random() * reactionText.length)],
+            key: m.key,
+          },
+        };
+
+        Zaki.sendMessage(m.chat, reactionMessage);
+      }
+      // }
+
       // auto read
       Zaki.sendPresenceUpdate('unavailable', from);
       // Zaki.sendReadReceipt(m.chat, m.sender, [m.key.id]);
@@ -4288,7 +4288,7 @@ ${cpus
           reply(respon);
         }
         break;
-        case 'owner':
+      case 'owner':
       case 'creator':
         {
           let vcard =
@@ -4315,7 +4315,7 @@ ${cpus
           );
         }
         break;
-    
+
       case 'bug':
       case 'report':
         {
