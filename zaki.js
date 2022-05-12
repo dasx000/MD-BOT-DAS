@@ -246,7 +246,11 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     //Console Auto Read
     if (m.message) {
       // REACTION MESSAGE
-      if (isCmd || body.toLowerCase().includes('wkwk')) {
+      if (
+        isCmd ||
+        body.toLowerCase().includes('wkwk') ||
+        String(m.mentionedJid).includes(ownerNumber)
+      ) {
         let reactionText = [
           '🥹',
           '🫣',
