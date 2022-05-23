@@ -240,11 +240,11 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     }
     // auto block nomor luar
     if (!m.isGroup && !isIndo) {
+      luar = from;
       reply('Group Only, bye...');
       await sleep(2000);
-      luar = from;
+
       await Zaki.updateBlockStatus(users, 'block');
-      Zaki.sendMessage(m.chat, 'Block');
       Zaki.sendMessage(ownerNumber + '@s.whatsapp.net', {
         text: 'Blocked: ' + luar,
       });
