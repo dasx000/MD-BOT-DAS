@@ -120,6 +120,7 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       .includes(m.sender);
     const itsMe = m.sender == botNumber ? true : false;
     const isOwner = m.sender == ownerNumber + '@s.whatsapp.net' ? true : false;
+    const isIndo = m.sender.startsWith('628');
     const text = (q = args.join(' '));
     const quoted = m.quoted ? m.quoted : m;
     const mime = (quoted.msg || quoted).mimetype || '';
@@ -237,7 +238,17 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
     } catch (err) {
       console.error(err);
     }
-
+    // auto block nomor luar
+    if (!m.isGroup && !isIndo) {
+      reply('Group Only, bye...');
+      await sleep(2000);
+      luar = from;
+      await Zaki.updateBlockStatus(users, 'block');
+      Zaki.sendMessage(m.chat, 'Block');
+      Zaki.sendMessage(ownerNumber + '@s.whatsapp.net', {
+        text: 'Blocked: ' + luar,
+      });
+    }
     //Mode Bot
     if (!Zaki.public) {
       if (!isOwner && !itsMe) return;
