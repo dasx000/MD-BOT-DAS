@@ -243,7 +243,6 @@ module.exports = Zaki = async (Zaki, m, chatUpdate, store) => {
       luar = from;
       reply('Group Only, bye...');
       await sleep(2000);
-
       await Zaki.updateBlockStatus(luar, 'block');
       Zaki.sendMessage(ownerNumber + '@s.whatsapp.net', {
         text: 'Blocked: ' + luar,
